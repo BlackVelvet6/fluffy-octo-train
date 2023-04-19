@@ -1,0 +1,79 @@
+# Quest class
+class Quest:
+    def __init__(self, name, description, reward_experience):
+        self.name = name
+        self.description = description
+        self.reward_experience = reward_experience
+        self.completed = False
+
+    def complete(self):
+        self.completed = True
+
+    def __str__(self):
+        return f"{self.name}: {self.description}, Reward Experience: {self.reward_experience}"
+
+# Game class
+class Game:
+    def __init__(self):
+        self.player = None
+        self.monsters = [Monster("Goblin", 30, 8, 10), Monster("Orc", 50, 12, 20), Monster("Dragon", 100, 20, 50)]
+        self.items = [Item("Sword", "Increases attack by 5", 5, "attack"),
+                     Item("Shield", "Increases defense by 3", 3, "defense"),
+                     Item("Fire Sword", "Increases attack by 10 and deals fire damage", 10, "attack"),
+                     Item("Ice Sword", "Increases attack by 10 and deals ice damage", 10, "attack"),
+                     Item("Lightning Sword", "Increases attack by 10 and deals lightning damage", 10, "attack"),
+                     Item("Poison Sword", "Increases attack by 10 and poisons the enemy", 10, "attack"),
+                     Item("Water Sword", "Increases attack by 10 and deals water damage", 10, "attack"),
+                     Item("Wind Sword", "Increases attack by 10 and deals wind damage", 10, "attack"),
+                     Item("Dark Sword", "Increases attack by 15 and deals dark damage", 15, "attack")]
+        self.quests = [Quest("Save the Village", "Defeat the goblins and save the village", 20),
+                       Quest("Retrieve the Artifact", "Retrieve the ancient artifact from the dragon's lair", 100),
+                       Quest("Find the Lost Treasure", "Discover the lost treasure hidden in the forest", 50)]
+
+    def start_menu(self):
+        print("Welcome to the Quest Game!")
+        print("1. New Game")
+        print("2. Load Game")
+        print("3. Exit")
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            self.new_game()
+        elif choice == '2':
+            self.load_game()
+        elif choice == '3':
+            print("Thanks for playing! Goodbye!")
+            exit()
+        else:
+            print("Invalid choice. Please try again.")
+            self.start_menu()
+
+    def new_game(self):
+        print("Starting a new game...")
+        self.show_cutscene()
+        self.player = Player()
+        self.play_game()
+
+    def load_game(self):
+        print("Loading game...")
+        # Implement load game logic here
+
+    def show_cutscene(self):
+        print("--------------------------------------------------")
+        print("STORYLINE: You are a brave adventurer who has been")
+        print("tasked with saving a village from a horde of goblins.")
+        print("You must defeat the goblins and save the village from")
+        print("their plundering. Can you complete this quest and")
+        print("bring peace to the land?")
+        print("--------------------------------------------------")
+        input("Press Enter to continue...")
+
+    def play_game(self):
+        while True:
+            print("--------------------------------------------------")
+            print("Player Stats:")
+            print(self.player)
+            print("Quests:")
+            for quest in self.quests:
+                print(quest)
+            print("--------------------------------------------------")
+            choice = input
